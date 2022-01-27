@@ -23,7 +23,15 @@
         <div class="link-card">
       <div class="card">
           <div class="up-url">
-             <div class="full-link"><p class="old-url"><%= shortUrl.full %></p></div>
+             <div class="full-link">
+               <p class="old-url">
+                <% if(shortUrl.full.length > 40){ %> 
+               <%= shortUrl.full.substring(0,40) + "..." %>
+               <% }else{ %> 
+               <%= shortUrl.full.substring(0,40)%>
+               <% } %> 
+               </p>
+               </div>
              <h5 class="clicks"><%= shortUrl.clicks %> clicks</h5>
           </div>
           <div class="new-link-cont">
@@ -36,6 +44,9 @@
 
 
     
+  </div>
+  <div class="footer">
+    <p>Made with ❤️ by Sudhanshu Ranjan</p>
   </div>
 </body>
 </html>
