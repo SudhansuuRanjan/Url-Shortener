@@ -14,6 +14,7 @@ mongoose.connect('mongodb+srv://'+ username+':'+ password + host+'?retryWrites=t
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static("public"));
 
 
 app.get('/', async (req, res) => {
@@ -35,4 +36,4 @@ app.get('/:shortUrl', async (req, res) => {
   res.redirect(shortUrl.full)
 })
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 3000);

@@ -4,36 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>URL Shortener</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>URL Shrinker</h1>
+    <h1 class="heading">URL Shortener</h1>
     <form action="/shortUrls" method="POST" class="my-4 form-inline">
-      <label for="fullUrl" class="sr-only">Url</label>
-      <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
-      <button class="btn btn-success" type="submit">Shrink</button>
+      <div class="form-space">
+        <input required placeholder="Enter URL to shrink" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
+      <button class="btn btn-success" type="submit">Shorten</button>
+      </div>
     </form>
     
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>Full URL</th>
-          <th>Short URL</th>
-          <th>Clicks</th>
-        </tr>
-      </thead>
-      <tbody>
+   
+  
         <% shortUrls.forEach(shortUrl => { %>
-          <tr>
-            <td><a href="<%= shortUrl.full %>" target="_blank"><%= shortUrl.full %></a></td>
-            <td><a href="<%= shortUrl.short %>" target="_blank"><%= shortUrl.short %></a></td>
-            <td><%= shortUrl.clicks %></td>
-          </tr>
+        <div class="link-card">
+      <div class="card">
+          <div class="up-url">
+             <div class="full-link"><p class="old-url"><%= shortUrl.full %></p></div>
+             <h5 class="clicks"><%= shortUrl.clicks %> clicks</h5>
+          </div>
+          <div class="new-link-cont">
+            <a href="/<%= shortUrl.short %>" class="new-link">http://localhost:3000/<%= shortUrl.short %></a>
+            <button class="btn clipboard">Copy to clipboard</button>
+          </div>
+      </div>
+    </div>
         <% }) %>
-      </tbody>
-    </table>
+
+
+    
   </div>
 </body>
 </html>
