@@ -18,4 +18,6 @@ const shortUrlSchema = new mongoose.Schema({
   }
 })
 
+let links = []
+
 module.exports = mongoose.model('ShortUrl', shortUrlSchema)

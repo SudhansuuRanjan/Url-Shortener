@@ -1,7 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
+
+
 const app = express()
+
+let copyText = ""
 
 require('dotenv').config()
 
@@ -19,11 +23,17 @@ app.use(express.static("public"));
 
 app.get('/', async (req, res) => {
   const shortUrls = await ShortUrl.find()
-  res.render('index', { shortUrls: shortUrls })
+  res.render('index', { shortUrls: shortUrls , copyText:copyText})
 })
 
 app.post('/shortUrls', async (req, res) => {
   await ShortUrl.create({ full: req.body.fullUrl })
+  res.redirect('/')
+})
+
+app.post('/copy', (req,res)=>{
+  copyText = req.body.linkItem;
+  console.log(copyText);
   res.redirect('/')
 })
 

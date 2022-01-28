@@ -69,7 +69,7 @@ input{
     border: none;
     border: 4px solid white;
 }
-.clipboard:focus{
+.clipboard:active{
     border: 4px solid rgb(89, 139, 255);
 }
 .new-link-cont{
@@ -80,14 +80,34 @@ input{
     padding-bottom: 0;
 }
 .new-link{
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 .full-link{
    text-overflow: wrap;
+   max-width: 50%;
 }
 .old-url{
    display: inline-block;
     text-overflow: ellipsis;
     width: calc(80%);
+    font-size: 1rem;
 } 
+
+@media screen and (max-width:800px) {
+   .container{
+    margin: auto;
+    margin-right: 5%;
+    margin-left: 5%;
+} 
+.old-url{
+   display: inline-block;
+    text-overflow: ellipsis;
+    width: calc(80%);
+    font-size: 0.9rem;
+} 
+.new-link{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+}

@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node server.js",
-    "dev":"nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "devStart": "nodemon server.js"
   },
   "author": "Sudhanshu",
   "license": "ISC",
   "dependencies": {
+    "clipboard": "^2.0.9",
     "dotenv": "^14.3.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",

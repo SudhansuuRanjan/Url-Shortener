@@ -13,40 +13,51 @@
     <form action="/shortUrls" method="POST" class="my-4 form-inline">
       <div class="form-space">
         <input required placeholder="Enter URL to shrink" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
-      <button class="btn btn-success" type="submit">Shorten</button>
+      <button class="btn btn-success" type="submit" onclick="handle()">Shorten</button>
       </div>
     </form>
     
-   
-  
         <% shortUrls.forEach(shortUrl => { %>
         <div class="link-card">
       <div class="card">
           <div class="up-url">
              <div class="full-link">
                <p class="old-url">
-                <% if(shortUrl.full.length > 40){ %> 
-               <%= shortUrl.full.substring(0,40) + "..." %>
+                <% if(shortUrl.full.length > 25){ %> 
+               <%= shortUrl.full.substring(0,25) + "..." %>
                <% }else{ %> 
-               <%= shortUrl.full.substring(0,40)%>
+               <%= shortUrl.full.substring(0,25)%>
                <% } %> 
                </p>
                </div>
              <h5 class="clicks"><%= shortUrl.clicks %> clicks</h5>
           </div>
-          <div class="new-link-cont">
-            <a href="/<%= shortUrl.short %>" class="new-link">http://localhost:3000/<%= shortUrl.short %></a>
-            <button class="btn clipboard">Copy to clipboard</button>
+          
+          <form action="/copy" method="post">
+            <div class="new-link-cont">   
+            <a href="/<%= shortUrl.short %>"  class="new-link">http://localhost:3000/<%= shortUrl.short %></a>
+            <input type="hidden" name="linkItem" id="input" value="<%= shortUrl.short %>"></input>
+            <button class="btn clipboard" type="submit" onclick="handleCopy()">Copy</button>
           </div>
+          </form>
       </div>
     </div>
         <% }) %>
-
 
     
   </div>
   <div class="footer">
     <p>Made with ❤️ by Sudhanshu Ranjan</p>
   </div>
+  <script>
+
+    function handleCopy(){
+      var copyText = document.getElementById("input");
+      copyText.select();
+      navigator.clipboard.writeText("http://localhost:3000/"+ copyText.value);
+      alert("Link copied to clipboard.");
+    }
+
+  </script>
 </body>
 </html>
