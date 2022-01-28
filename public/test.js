@@ -2,10 +2,16 @@ function setAlert(){
     alert("shgshgc");
 }
 function handleCopy(){
-      var copyText = document.querySelectorAll("#input");
+      var copyText = document.querySelector("#input");
       copyText.select();
       navigator.clipboard.writeText("http://localhost:3000/"+ copyText.value);
       alert("Link copied to clipboard.");
-    }
+ }
 
-var linksArr = [1, 2 , 3];
+document.querySelectorAll(".btn-success").forEach(elem => elem.addEventListener("click",
+ () => {
+    var copyText = elem.target;
+      copyText.select();
+      navigator.clipboard.writeText("http://localhost:3000/"+ copyText.value);
+      alert("Link copied to clipboard.");
+  }));
