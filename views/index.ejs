@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>URL Shortener</title>
+   <script src="/test.js"></script>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -16,7 +17,7 @@
       <button class="btn btn-success" type="submit" onclick="handle()">Shorten</button>
       </div>
     </form>
-    
+
         <% shortUrls.forEach(shortUrl => { %>
         <div class="link-card">
       <div class="card">
@@ -51,12 +52,8 @@
   </div>
   <script>
 
-    function handleCopy(){
-      var copyText = document.getElementById("input");
-      copyText.select();
-      navigator.clipboard.writeText("http://localhost:3000/"+ copyText.value);
-      alert("Link copied to clipboard.");
-    }
+    
+    
 
   </script>
 </body>

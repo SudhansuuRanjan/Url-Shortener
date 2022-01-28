@@ -1,9 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const ShortUrl = require('./models/shortUrl')
-
+const shortId = require('shortid')
 
 const app = express()
+
+app.set('view engine', 'ejs')
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static("public"));
 
 let copyText = ""
 
@@ -15,10 +18,24 @@ require('dotenv').config()
 
 mongoose.connect('mongodb+srv://'+ username+':'+ password + host+'?retryWrites=true&w=majority');
 
+const shortUrlSchema = {
+  full: {
+    type: String,
+    required: true
+  },
+  short: {
+    type: String,
+    required: true,
+    default: shortId.generate
+  },
+  clicks: {
+    type: Number,
+    required: true,
+    default: 0
+  }
+}
 
-app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
-app.use(express.static("public"));
+const ShortUrl = mongoose.model("ShortUrl", shortUrlSchema )
 
 
 app.get('/', async (req, res) => {
@@ -26,8 +43,11 @@ app.get('/', async (req, res) => {
   res.render('index', { shortUrls: shortUrls , copyText:copyText})
 })
 
-app.post('/shortUrls', async (req, res) => {
-  await ShortUrl.create({ full: req.body.fullUrl })
+app.post('/shortUrls', (req, res) => {
+  const shortUrl = new ShortUrl({
+    full: req.body.fullUrl
+  });
+  shortUrl.save();
   res.redirect('/')
 })
 
